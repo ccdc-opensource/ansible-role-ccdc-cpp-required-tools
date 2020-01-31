@@ -1,0 +1,73 @@
+---
+- name: Install required packages (Centos)
+  yum: 
+    name:
+      # Compression utilities
+      # Download utilities
+      - curl # for downloads
+      - wget # for downloads
+      # Documentation utilities
+      - doxygen # for building documentation
+      - graphviz # for building documentation
+      # Artifactory 
+      # No package has jfrog-cli, will be installed via download
+      # Build utilities
+      # recent ninja and cmake are not available with packages, must install manually
+    state: latest
+    when: "ansible_os_family == 'RedHat'"
+
+- name: Download JFrog cli (Linux)
+  get_url:
+    url: https://api.bintray.com/content/jfrog/jfrog-cli-go/$latest/jfrog-cli-linux-386/jfrog?bt_package=jfrog-cli-linux-386
+    dest: /usr/bin/jfrog
+    mode: 'u=rwx,g=rx,o=rx'
+  when: ansible_system == "Linux"
+
+- name: Install required tools (MacOS)
+  homebrew:
+    name:
+      # Compression utilities
+      - xz # efficient compression
+      # Download utilities
+      - wget # for downloads, curl is part of the system
+      # Documentation utilities
+      - doxygen # for building documentation
+      - graphviz # for building documentation
+      # Artifactory 
+      - jfrog-cli-go # for uploading to artifactory
+      # Build utilities
+      - ninja # for fast builds
+      - cmake
+      # Python utilities
+      - swig
+    state: present
+  when: "ansible_os_family == 'Darwin'"
+            
+- name: Install required tools (windows)
+  win_chocolatey:
+    name: 
+      # Compression utilities
+      - 7zip.install # for installer creation
+      - 7zip.portable
+      # Download utilities
+      - curl # for downloads
+      - wget # for downloads
+      # Documentation utilities
+      - doxygen.install # for building documentation
+      - graphviz # for building documentation
+      # Artifactory 
+      - jfrog-cli # for uploading to artifactory
+      # Build utilities
+      - ninja # for fast builds
+      - cmake
+      # Python utilities
+      - swig
+      # Required for some scripts? Putting here but could go in ccdc-cpp-cli-dev-tools role
+      - sysinternals
+    state: present
+  when: "ansible_os_family == 'Windows'"
+
+- name: install conan via pip
+  pip:
+    name: conan
+    state: latest
