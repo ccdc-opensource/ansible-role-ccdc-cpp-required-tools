@@ -14,7 +14,8 @@
       # Build utilities
       # recent ninja and cmake are not available with packages, must install manually
     state: latest
-    when: "ansible_os_family == 'RedHat'"
+    use_backend: yum
+  when: "ansible_os_family == 'RedHat'"
 
 - name: Download JFrog cli (Linux)
   get_url:
