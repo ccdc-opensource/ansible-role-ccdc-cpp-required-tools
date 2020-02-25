@@ -44,7 +44,7 @@
     state: present
   when: "ansible_os_family == 'Darwin'"
             
-- name: Install required tools (windows)
+- name: Install required tools (Windows)
   win_chocolatey:
     name: 
       # Compression utilities
@@ -68,7 +68,14 @@
     state: present
   when: "ansible_os_family == 'Windows'"
 
-- name: install conan via pip
+- name: Install conan via pip (Linux, macOS)
   pip:
     name: conan
     state: latest
+  when: "ansible_os_family != 'Windows'"
+
+# Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
+- name: Install conan via pip (Windows)
+  win_command:
+    cmd: pip install conan
+  when: "ansible_os_family == 'Windows'"
