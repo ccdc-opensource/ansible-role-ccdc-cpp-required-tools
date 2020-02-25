@@ -16,6 +16,7 @@
     state: latest
     use_backend: yum
   when: "ansible_os_family == 'RedHat'"
+  become: yes
 
 - name: Download JFrog cli (Linux)
   get_url:
@@ -23,6 +24,7 @@
     dest: /usr/bin/jfrog
     mode: 'u=rwx,g=rx,o=rx'
   when: ansible_system == "Linux"
+  become: yes
 
 - name: Install required tools (MacOS)
   homebrew:
@@ -43,7 +45,7 @@
       - swig
     state: present
   when: "ansible_os_family == 'Darwin'"
-            
+
 - name: Install required tools (Windows)
   win_chocolatey:
     name: 
