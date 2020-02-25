@@ -1,26 +1,26 @@
 ---
-    - name: Install required tools
-        homebrew:
-            name:
-                # Compression utilities
-                - xz # efficient compression
-                # Download utilities
-                - wget # for downloads, curl is part of the system
-                # Documentation utilities
-                - doxygen # for building documentation
-                - graphviz # for building documentation
-                # Artifactory 
-                - jfrog-cli-go # for uploading to artifactory
-                # Build utilities
-                - ninja # for fast builds
-                - cmake
-                # Python utilities
-                - swig
-            state: present
+  - name: Install required tools
+    homebrew:
+      name:
+        # Compression utilities
+        - xz # efficient compression
+        # Download utilities
+        - wget # for downloads, curl is part of the system
+        # Documentation utilities
+        - doxygen # for building documentation
+        - graphviz # for building documentation
+        # Artifactory 
+        - jfrog-cli-go # for uploading to artifactory
+        # Build utilities
+        - ninja # for fast builds
+        - cmake
+        # Python utilities
+        - swig
+      state: present
 
-    - name: Install conan
-        pip:
-            name: conan
-            state: latest
-            executable: pip3
-            extra_args: '--user'
+  - name: Install conan
+    pip:
+      name: conan
+      state: latest
+      executable: pip3
+      extra_args: '--user'
