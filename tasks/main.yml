@@ -75,6 +75,7 @@
     name: conan
     state: latest
     executable: pip3
+    extra_args: '--user'
   when: "ansible_os_family != 'Windows'"
 
 # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
