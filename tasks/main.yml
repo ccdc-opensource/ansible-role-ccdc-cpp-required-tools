@@ -76,6 +76,5 @@
 
 # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
 - name: Install conan via pip (Windows)
-  win_command:
-    cmd: pip install conan
+  win_command: pip install conan
   when: "ansible_os_family == 'Windows'"
