@@ -1,32 +1,42 @@
 ---
-  - name: Install required packages
-    yum: 
-      name:
-        # Compression utilities
-        # Download utilities
-        - curl # for downloads
-        - wget # for downloads
-        # Documentation utilities
-        - doxygen # for building documentation
-        - graphviz # for building documentation
-        # Artifactory 
-        # No package has jfrog-cli, will be installed via download
-        # Build utilities
-        # recent ninja and cmake are not available with packages, must install manually
-      state: latest
-      use_backend: yum
-    become: yes
+- name: Add mariadb repository
+  yum_repository:
+    name: mariadb
+    description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
+    baseurl: "http://yum.mariadb.org/10.0/centos7-amd64"
+    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck: yes
+  become: yes
 
-  - name: Install JFrog cli
-    get_url:
-      url: https://api.bintray.com/content/jfrog/jfrog-cli-go/$latest/jfrog-cli-linux-386/jfrog?bt_package=jfrog-cli-linux-386
-      dest: /usr/bin/jfrog
-      mode: 'u=rwx,g=rx,o=rx'
-    become: yes
+- name: Install required packages
+  yum:
+    name:
+      # Compression utilities
+      - zstd
+      # Download utilities
+      - curl # for downloads
+      - wget # for downloads
+      # Documentation utilities
+      - doxygen # for building documentation
+      - graphviz # for building documentation
+      - bison # Qt build dependency
+      - flex # Qt build dependency
+      - gperf # Qt build dependency
+      - MariaDB
+    state: latest
+    use_backend: yum
+  become: yes
 
-  - name: Install conan
-    pip:
-      name: conan
-      state: latest
-      executable: pip3
-      extra_args: '--user'
+- name: Install JFrog cli
+  get_url:
+    url: https://api.bintray.com/content/jfrog/jfrog-cli-go/$latest/jfrog-cli-linux-386/jfrog?bt_package=jfrog-cli-linux-386
+    dest: /usr/bin/jfrog
+    mode: "u=rwx,g=rx,o=rx"
+  become: yes
+
+- name: Install conan
+  pip:
+    name: conan
+    state: latest
+    executable: pip3
+    extra_args: "--user"
