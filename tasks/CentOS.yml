@@ -23,6 +23,7 @@
       - flex # Qt build dependency
       - gperf # Qt build dependency
       - MariaDB
+      - xorg-x11-utils # for xdpyinfo
     state: latest
     use_backend: yum
   become: yes
