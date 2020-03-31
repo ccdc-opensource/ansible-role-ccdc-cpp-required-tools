@@ -24,6 +24,8 @@
       - gperf # Qt build dependency
       - MariaDB
       - xorg-x11-utils # for xdpyinfo
+      - glx-utils # for glxinfo
+      - mesa-dri-drivers # for OpenGL to work inside XDummy
     state: latest
     use_backend: yum
   become: yes
