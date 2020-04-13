@@ -19,6 +19,11 @@
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
+      - texlive-latex # for building documentation
+      - texlive-latex-bin # for building documentation
+      - texlive-dvips # for building documentation
+      - texlive-dvips-bin # for building documentation
+      - texlive-cm # for building documentation
       - bison # Qt build dependency
       - flex # Qt build dependency
       - gperf # Qt build dependency
