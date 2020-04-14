@@ -27,6 +27,7 @@
       - texlive-collection-fontsrecommended # for building documentation
       - texlive-collection-fontsextra # for building documentation
       - texlive-collection-mathextra # for building documentation
+      - rsync # for syncing documentation 
       - bison # Qt build dependency
       - flex # Qt build dependency
       - gperf # Qt build dependency
