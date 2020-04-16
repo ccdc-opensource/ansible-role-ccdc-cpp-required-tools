@@ -25,6 +25,7 @@
       - texlive-dvips-bin # for building documentation
       - texlive-cm # for building documentation
       - texlive-collection-fontsrecommended # for building documentation
+      - ghostscript # for building documentation (doxygen is becoming a bit of a pain...)
       # - texlive-collection-fontsextra # for building documentation
       # - texlive-collection-mathextra # for building documentation
       - rsync # for syncing documentation 
