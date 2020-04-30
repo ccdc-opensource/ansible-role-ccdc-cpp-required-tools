@@ -16,5 +16,6 @@
       - cmake
       # Python utilities
       - swig
+      - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
       - conan
     state: present
