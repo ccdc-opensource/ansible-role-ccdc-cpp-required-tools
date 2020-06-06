@@ -10,7 +10,7 @@
       - doxygen # for building documentation
       - graphviz # for building documentation
       # Artifactory
-      - jfrog-cli-go # for uploading to artifactory
+      - jfrog-cli # for uploading to artifactory
       # Build utilities
       - ninja # for fast builds
       - cmake
