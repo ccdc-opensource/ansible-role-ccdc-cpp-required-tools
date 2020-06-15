@@ -16,6 +16,7 @@
       # Download utilities
       - curl # for downloads
       - wget # for downloads
+      - jq
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation

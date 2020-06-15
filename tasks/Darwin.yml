@@ -6,6 +6,7 @@
       - xz # efficient compression
       # Download utilities
       - wget # for downloads, curl is part of the system
+      - jq
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
