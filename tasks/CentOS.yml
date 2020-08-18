@@ -17,6 +17,7 @@
       - curl # for downloads
       - wget # for downloads
       - jq
+      - dos2unix # used by update_codens.sh
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
