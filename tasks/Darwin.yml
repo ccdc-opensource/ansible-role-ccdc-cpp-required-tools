@@ -1,4 +1,12 @@
 ---
+- name: Ensure user can deploy manpages
+  file:
+    path: /usr/local/share/man/man8
+    state: directory
+    recurse: yes
+    owner: "{{ ansible_user }}"
+  become: yes
+
 - name: Install required tools
   homebrew:
     name:
