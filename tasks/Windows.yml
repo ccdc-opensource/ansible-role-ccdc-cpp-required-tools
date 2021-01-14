@@ -14,11 +14,6 @@
         - graphviz # for building documentation
         # Artifactory 
         - jfrog-cli # for uploading to artifactory
-        # Build utilities
-        - ninja # for fast builds
-        - cmake
-        # Python utilities
-        - swig
         # Required for some scripts? Putting here but could go in ccdc-cpp-cli-dev-tools role
         - sysinternals
       state: present
