@@ -15,6 +15,7 @@
       # Download utilities
       - wget # for downloads, curl is part of the system
       - jq
+      - diffutils # for diffing large results in conquest tests
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
