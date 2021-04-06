@@ -15,16 +15,15 @@
       # Download utilities
       - wget # for downloads, curl is part of the system
       - jq
+      - diffutils # for diffing large results in conquest tests
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
       # Artifactory
       - jfrog-cli # for uploading to artifactory
-      # Build utilities
-      - ninja # for fast builds
-      - cmake
       # Python utilities
-      - swig
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
       - conan
+      # The server is required to run csd_mariadb_databaselib testsuite
+      - mariadb
     state: present

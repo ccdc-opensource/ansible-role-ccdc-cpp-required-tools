@@ -14,13 +14,10 @@
         - graphviz # for building documentation
         # Artifactory 
         - jfrog-cli # for uploading to artifactory
-        # Build utilities
-        - ninja # for fast builds
-        - cmake
-        # Python utilities
-        - swig
         # Required for some scripts? Putting here but could go in ccdc-cpp-cli-dev-tools role
         - sysinternals
+        - diffutils # for diffing large results in conquest tests
+
       state: present
 
   # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead

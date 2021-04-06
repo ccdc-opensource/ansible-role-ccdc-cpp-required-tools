@@ -34,6 +34,7 @@
       - bison # Qt build dependency
       - flex # Qt build dependency
       - gperf # Qt build dependency
+      - diffutils # for diffing large results in conquest tests
       - MariaDB
       - xorg-x11-utils # for xdpyinfo
       - glx-utils # for glxinfo
