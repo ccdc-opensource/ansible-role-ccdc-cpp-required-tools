@@ -51,7 +51,7 @@ None.
 
     - hosts: all
       roles:
-        - ccdc-cpp-required-tools
+        - ccdc.cpp_required_tools
 
 ## License
 
