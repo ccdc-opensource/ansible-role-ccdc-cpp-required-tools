@@ -6,7 +6,7 @@
     baseurl: "http://yum.mariadb.org/10.0/centos7-amd64"
     gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
-  become: yes
+  become: true
 
 - name: Install required packages
   yum:
@@ -30,7 +30,7 @@
       - ghostscript # for building documentation (doxygen is becoming a bit of a pain...)
       # - texlive-collection-fontsextra # for building documentation
       # - texlive-collection-mathextra # for building documentation
-      - rsync # for syncing documentation 
+      - rsync # for syncing documentation
       - bison # Qt build dependency
       - flex # Qt build dependency
       - gperf # Qt build dependency
@@ -39,20 +39,20 @@
       - xorg-x11-utils # for xdpyinfo
       - glx-utils # for glxinfo
       - mesa-dri-drivers # for OpenGL to work inside XDummy
-    state: latest
+    state: present
     use_backend: yum
-  become: yes
+  become: true
 
 - name: Install JFrog cli
   get_url:
     url: https://releases.jfrog.io/artifactory/jfrog-cli/v1/[RELEASE]/jfrog-cli-linux-amd64/jfrog
     dest: /usr/bin/jfrog
     mode: "u=rwx,g=rx,o=rx"
-  become: yes
+  become: true
 
 - name: Install conan
   pip:
     name: conan
-    state: latest
+    state: present
     executable: pip3
     extra_args: "--user"
