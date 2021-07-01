@@ -1,10 +1,10 @@
 ---
-  - name: Set up required development tools
-    include_tasks: "{{ taskfile }}"
-    with_first_found:
-      - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-      - "{{ ansible_distribution }}.yml"
-      - "{{ ansible_os_family }}.yml"
-      - "{{ ansible_system }}.yml"
-    loop_control:
-      loop_var: taskfile
+- name: Set up required development tools
+  include_tasks: "{{ taskfile }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - "{{ ansible_system }}.yml"
+  loop_control:
+    loop_var: taskfile

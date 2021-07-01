@@ -1,25 +1,24 @@
 ---
-  - name: Install required tools
-    win_chocolatey:
-      name: 
-        # Compression utilities
-        - 7zip.install # for installer creation
-        - 7zip.portable
-        # Download utilities
-        - curl # for downloads
-        - wget # for downloads
-        - jq
-        # Documentation utilities
-        - doxygen.install # for building documentation
-        - graphviz # for building documentation
-        # Artifactory 
-        - jfrog-cli # for uploading to artifactory
-        # Required for some scripts? Putting here but could go in ccdc.cpp_cli_dev_tools role
-        - sysinternals
-        - diffutils # for diffing large results in conquest tests
+- name: Install required tools
+  win_chocolatey:
+    name:
+      # Compression utilities
+      - 7zip.install # for installer creation
+      - 7zip.portable
+      # Download utilities
+      - curl # for downloads
+      - wget # for downloads
+      - jq
+      # Documentation utilities
+      - doxygen.install # for building documentation
+      - graphviz # for building documentation
+      # Artifactory
+      - jfrog-cli # for uploading to artifactory
+      # Required for some scripts? Putting here but could go in ccdc.cpp_cli_dev_tools role
+      - sysinternals
+      - diffutils # for diffing large results in conquest tests
+    state: present
 
-      state: present
-
-  # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
-  - name: Install conan
-    win_command: pip install conan
+# Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
+- name: Install conan
+  win_command: pip install conan

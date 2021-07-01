@@ -3,6 +3,7 @@ dependencies: []
 
 galaxy_info:
   role_name: cpp_required_tools
+  namespace: ccdc
   author: rockdreamer
   description: Deployment for required tools for CCDC build machines.
   company: The Cambridge Crystallographic Data Centre
@@ -12,16 +13,7 @@ galaxy_info:
     - name: EL
       versions:
         - all
-    - name: Fedora
-      versions:
-        - all
-    - name: Debian
-      versions:
-        - all
-    - name: Ubuntu
-      versions:
-        - all
-    - name: Darwin
+    - name: MacOSX
       versions:
         - all
     - name: Windows
