@@ -1,6 +1,6 @@
 ---
 - name: Ensure user can deploy manpages
-  file:
+  ansible.builtin.file:
     path: /usr/local/share/man/man8
     state: directory
     recurse: yes

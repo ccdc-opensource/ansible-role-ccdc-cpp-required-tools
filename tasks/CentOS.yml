@@ -1,6 +1,6 @@
 ---
 - name: Add mariadb repository
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: mariadb
     description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
     baseurl: "http://yum.mariadb.org/10.0/centos7-amd64"
@@ -9,7 +9,7 @@
   become: true
 
 - name: Install required packages
-  yum:
+  ansible.builtin.yum:
     name:
       # Compression utilities
       - zstd
@@ -44,14 +44,14 @@
   become: true
 
 - name: Install JFrog cli
-  get_url:
+  ansible.builtin.get_url:
     url: https://releases.jfrog.io/artifactory/jfrog-cli/v1/[RELEASE]/jfrog-cli-linux-amd64/jfrog
     dest: /usr/bin/jfrog
     mode: "u=rwx,g=rx,o=rx"
   become: true
 
 - name: Install conan
-  pip:
+  ansible.builtin.pip:
     name: conan
     state: present
     executable: pip3
