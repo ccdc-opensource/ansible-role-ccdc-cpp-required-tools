@@ -17,8 +17,14 @@
       # Required for some scripts? Putting here but could go in ccdc.cpp_cli_dev_tools role
       - sysinternals
       - diffutils # for diffing large results in conquest tests
+      # This is required for Code Signing in Azure
+      - dotnet-6.0-sdk
     state: present
 
 # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
 - name: Install conan
   win_command: pip install conan
+
+# This is required for Code Signing in Azure using Dotnet installed above
+- name: Install AzureSignTool
+  ansible.windows.win_command: dotnet tool install --global azuresigntool
