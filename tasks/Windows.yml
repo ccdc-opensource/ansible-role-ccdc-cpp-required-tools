@@ -26,5 +26,7 @@
   ansible.windows.win_command: pip install conan
 
 # This is required for Code Signing in Azure using Dotnet installed above
+- name: Add Nuget source for AzureSignTool
+  ansible.windows.win_command: dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 - name: Install AzureSignTool
   ansible.windows.win_command: dotnet tool install --global azuresigntool
