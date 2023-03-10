@@ -52,7 +52,7 @@
 
 - name: Install conan
   ansible.builtin.pip:
-    name: conan
+    name: conan==1.59.0
     state: present
     executable: pip3
     extra_args: "--user"
