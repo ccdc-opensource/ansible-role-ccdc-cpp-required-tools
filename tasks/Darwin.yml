@@ -23,7 +23,7 @@
       - jfrog-cli # for uploading to artifactory
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
-      - conan
+      - conan@1.59.0
       # The server is required to run csd_mariadb_databaselib testsuite
       - mariadb
     state: present
