@@ -22,7 +22,7 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-      - name: galaxy
-        uses: robertdebock/galaxy-action@1.2.0
+      - name: Release Ansible Role to Galaxy
+        uses: hspaans/ansible-galaxy-action@v1
         with:
-          galaxy_api_key: ${{ secrets.galaxy_api_key }}
+          api_key: ${{ secrets.galaxy_api_key }}
