@@ -45,7 +45,7 @@ jobs:
           sudo snap install yq
           ls -la
           yq -h
-          yq e -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= ${{ needs.release.outputs.requirements-version }}' ${{ env.filename }}
+          yq eval -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= ${{ needs.release.outputs.requirements-version }}' ${{ env.filename }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
