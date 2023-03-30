@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - 'main'
-env:
-  filename: requirements.yml
-  requirements-src: ccdc.cpp_required_tools
 jobs:
   release:
     outputs:
@@ -49,7 +46,7 @@ jobs:
       - name: Update builds requirements yaml
         run: |
           sudo snap install yq
-          yq eval -i '(.[] | select(.src == "${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' ${{ env.filename }}
+          yq eval -i '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' requirements.yml
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
