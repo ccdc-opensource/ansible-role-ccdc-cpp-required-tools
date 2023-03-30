@@ -40,9 +40,9 @@ jobs:
           repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
           ref: ansible-provision  # for testing, change to development (or new staging branch) when complete
           token: ${{ secrets.GH_PAT }}
-      - uses: chrisdickinson/setup-yq@latest
       - name: Update builds requirements yaml
         run: |
+          snap install yq
           ls -la
           yq -h
           yq e -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= ${{ needs.release.outputs.requirements-version }}' ${{ env.filename }}
