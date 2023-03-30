@@ -49,6 +49,5 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
           commit-message: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release NO_JIRA"
-          committer: GitHub Actions [bot]
           branch: ${{ github.repository }}
           title: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release"
