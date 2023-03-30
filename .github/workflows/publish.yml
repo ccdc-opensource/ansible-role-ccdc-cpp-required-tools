@@ -9,7 +9,7 @@ env:
 jobs:
   release:
     outputs:
-      requirements-version: ${{ steps.tag_version.outputs.new_tag }
+      requirements-version: ${{ steps.tag_version.outputs.new_tag }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
