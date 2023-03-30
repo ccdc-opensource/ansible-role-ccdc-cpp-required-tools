@@ -10,11 +10,17 @@ jobs:
   release:
     outputs:
       requirements-version: ${{ steps.tag_version.outputs.new_tag }}
+      galaxy-name: ${{ steps.galaxy.outputs.name }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v3
+      - name: Get galaxy name
+        id: galaxy
+        run: |
+          sudo snap install yq
+          echo "name=$(yq eval '.galaxy_info.role_name' meta/main.yml)" >> GITHUB_OUTPUT
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
@@ -43,7 +49,7 @@ jobs:
       - name: Update builds requirements yaml
         run: |
           sudo snap install yq
-          yq eval -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' ${{ env.filename }}
+          yq eval -i '(.[] | select(.src == "${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' ${{ env.filename }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
