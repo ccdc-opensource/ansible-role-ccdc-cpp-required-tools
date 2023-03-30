@@ -3,8 +3,13 @@ on:
   push:
     branches:
       - 'main'
+env:
+  filename: requirements.yml
+  requirements-src: ccdc.cpp_required_tools
 jobs:
   release:
+    outputs:
+      requirements-version: ${{ steps.tag_version.outputs.new_tag }
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,3 +31,23 @@ jobs:
         uses: hspaans/ansible-galaxy-action@v1
         with:
           api_key: ${{ secrets.galaxy_api_key }}
+  update-build-requirements:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 
+        with:
+          repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
+          ref: ansible-provision  # for testing, change to development (or new staging branch) when complete
+          token: ${{ secrets.GH_PAT }}
+      - uses: chrisdickinson/setup-yq@latest
+      - name: Update builds requirements yaml
+        run: |
+          yq -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= ${{ needs.release.outputs.requirements-version }}' ${{ env.filename }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release NO_JIRA"
+          committer: GitHub Actions [bot]
+          branch: ${{ github.repository }}
+          title: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release"
