@@ -42,7 +42,7 @@ jobs:
           token: ${{ secrets.GH_PAT }}
       - name: Update builds requirements yaml
         run: |
-          snap install yq
+          sudo snap install yq
           ls -la
           yq -h
           yq e -i '(.[] | select(.src == "${{ env.requirements-src }}")) .version |= ${{ needs.release.outputs.requirements-version }}' ${{ env.filename }}
