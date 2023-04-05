@@ -48,7 +48,7 @@ jobs:
           sudo snap install yq
           yq eval -i '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' requirements.yml
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GH_PAT }}
           commit-message: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release NO_JIRA"
