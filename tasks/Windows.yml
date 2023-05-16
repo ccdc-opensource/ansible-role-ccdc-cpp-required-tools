@@ -38,3 +38,9 @@
   failed_when:
     - installtool.rc != 0
     - '"is already installed" not in installtool.stderr'
+
+# The following 2 steps are required to connect to the MsSQL Db server to run tests
+- name: Download MsSQL driver
+  ansible.windows.win_package:
+    path: https://go.microsoft.com/fwlink/?linkid=2121206
+    arguments: /install /passive /norestart
