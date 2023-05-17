@@ -43,4 +43,4 @@
 - name: Download MsSQL driver
   ansible.windows.win_package:
     path: https://go.microsoft.com/fwlink/?linkid=2121206
-    arguments: /install /passive /norestart
+    arguments: 'IACCEPTMSODBCSQLLICENSETERMS=YES'
