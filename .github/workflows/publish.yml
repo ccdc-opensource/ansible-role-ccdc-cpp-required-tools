@@ -41,8 +41,8 @@ jobs:
       - uses: actions/checkout@v3 
         with:
           repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
-          ref: ansible-provision  # for testing, change to development (or new staging branch) when complete
-          token: ${{ secrets.GH_PAT }}
+          ref: staging  # for testing, change to main when that repo is sorted
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Update builds requirements yaml
         run: |
           sudo snap install yq
