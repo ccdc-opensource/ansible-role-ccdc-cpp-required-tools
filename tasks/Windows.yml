@@ -38,3 +38,10 @@
   failed_when:
     - installtool.rc != 0
     - '"is already installed" not in installtool.stderr'
+
+# Required to connect to the MsSQL Db server to run tests
+# A backup of this is stored in Artifactory ccdc-3rdparty-windows-runtime-exes/msodbcsql-11-x64.msi
+- name: Download MsSQL driver
+  ansible.windows.win_package:
+    path: https://go.microsoft.com/fwlink/?linkid=2121206
+    arguments: 'IACCEPTMSODBCSQLLICENSETERMS=YES'
