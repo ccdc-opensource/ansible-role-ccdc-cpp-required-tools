@@ -7,12 +7,12 @@
     owner: "{{ ansible_user }}"
   become: true
 
-
 - name: Install prerequsite tools (needed for below)
   community.general.homebrew:
     name:
       - svn
     state: present
+    ﻿﻿update_homebrew: true
 
 - name: Install required tools
   community.general.homebrew:
