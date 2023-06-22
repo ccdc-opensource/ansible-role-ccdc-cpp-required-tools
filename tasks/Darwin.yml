@@ -12,7 +12,7 @@
     name:
       - svn
     state: present
-    ﻿﻿update_homebrew: true
+    update_homebrew: true
 
 - name: Install required tools
   community.general.homebrew:
