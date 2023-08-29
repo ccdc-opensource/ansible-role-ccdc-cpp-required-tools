@@ -3,7 +3,7 @@
   ansible.builtin.yum_repository:
     name: mariadb
     description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
-    baseurl: "http://yum.mariadb.org/10.6/centos7-amd64"
+    baseurl: "http://yum.mariadb.org/10.6/rhel9-amd64"
     gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
   become: true
