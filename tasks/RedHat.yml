@@ -40,7 +40,6 @@
       - glx-utils # for glxinfo
       - mesa-dri-drivers # for OpenGL to work inside XDummy
     state: present
-    use_backend: yum
   become: true
 
 - name: Install JFrog cli
