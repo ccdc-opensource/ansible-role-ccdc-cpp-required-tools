@@ -1,4 +1,8 @@
 ---
+- name: Set up package managers for required tools
+  ansible.builtin.include_role:
+    name: ccdc.package_manager_configuration
+
 - name: Set up required development tools
   ansible.builtin.include_tasks: "{{ taskfile }}"
   with_first_found:
