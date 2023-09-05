@@ -21,7 +21,7 @@
       - jq
       - dos2unix # used by update_codens.sh
       # Documentation utilities
-      - doxygen # for building documentation (commenting out for now)
+      - doxygen # for building documentation
       - graphviz # for building documentation
       - texlive-latex # for building documentation
       - texlive-latex-bin # for building documentation
