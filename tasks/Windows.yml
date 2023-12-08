@@ -23,7 +23,7 @@
 
 # Ansible's Python-based modules, including pip, don't work on Windows so we have to do this instead
 - name: Install conan
-  ansible.windows.win_command: pip install conan==1.59.0
+  ansible.windows.win_command: pip install conan=={{ conan_version }}
 
 # This is required for Code Signing in Azure using Dotnet installed above
 - name: Add Nuget source for AzureSignTool
@@ -44,4 +44,4 @@
 - name: Download MsSQL driver
   ansible.windows.win_package:
     path: https://go.microsoft.com/fwlink/?linkid=2121206
-    arguments: 'IACCEPTMSODBCSQLLICENSETERMS=YES'
+    arguments: "IACCEPTMSODBCSQLLICENSETERMS=YES"
