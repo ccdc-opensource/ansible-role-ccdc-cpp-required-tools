@@ -51,6 +51,10 @@
   become: true
 
 - name: Install conan
+  become: yes
+  become_user: vagrant
+  become_method: su
+  become_flags: '--login'
   ansible.builtin.pip:
     name: conan=={{ conan_version }}
     state: present
