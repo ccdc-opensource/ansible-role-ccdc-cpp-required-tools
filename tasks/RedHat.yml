@@ -9,7 +9,11 @@
   become: true
 
 - name: Install doxygen with crb enabled
-  ansible.builtin.command: dnf --enablerepo=crb install doxygen -y
+  become: true
+  ansible.builtin.dnf:
+    name: doxygen
+    enablerepo: crb
+    state: present
 
 - name: Install required packages
   ansible.builtin.dnf:
