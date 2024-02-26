@@ -1,3 +1,4 @@
+---
 name: Release to Ansible Galaxy
 on:
   push:
@@ -38,7 +39,7 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v3
         with:
           repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
           ref: staging  # for testing, change to main when that repo is sorted
@@ -46,9 +47,11 @@ jobs:
       - name: Update builds requirements yaml
         run: |
           sudo snap install yq
-          yq eval -i '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' requirements.yml
+          yq eval -i \
+              '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' \
+              requirements.yml
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GH_PAT }}
           commit-message: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release NO_JIRA"
