@@ -39,7 +39,7 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v3
         with:
           repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
           ref: staging  # for testing, change to main when that repo is sorted
