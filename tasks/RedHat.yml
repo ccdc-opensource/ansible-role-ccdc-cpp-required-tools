@@ -3,23 +3,32 @@
   ansible.builtin.yum_repository:
     name: mariadb
     description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
-    baseurl: "http://yum.mariadb.org/10.6/centos7-amd64"
+    baseurl: "http://yum.mariadb.org/10.6/rhel9-amd64"
     gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
   become: true
 
+- name: Install doxygen with crb enabled
+  become: true
+  ansible.builtin.dnf:
+    name: doxygen
+    enablerepo: crb
+    state: present
+
 - name: Install required packages
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       # Compression utilities
       - zstd
+      - p7zip
+      - p7zip-plugins
       # Download utilities
       - curl # for downloads
       - wget # for downloads
       - jq
       - dos2unix # used by update_codens.sh
       # Documentation utilities
-      - doxygen # for building documentation
+      # Installed above - doxygen # for building documentation
       - graphviz # for building documentation
       - texlive-latex # for building documentation
       - texlive-latex-bin # for building documentation
@@ -40,12 +49,12 @@
       - glx-utils # for glxinfo
       - mesa-dri-drivers # for OpenGL to work inside XDummy
     state: present
-    use_backend: yum
+    enable_plugin: crb
   become: true
 
 - name: Install JFrog cli
   ansible.builtin.get_url:
-    url: https://releases.jfrog.io/artifactory/jfrog-cli/v2/[RELEASE]/jfrog-cli-linux-amd64/jfrog
+    url: https://releases.jfrog.io/artifactory/jfrog-cli/v2/{{ jfrog_cli_version }}/jfrog-cli-linux-amd64/jfrog
     dest: /usr/bin/jfrog
     mode: "u=rwx,g=rx,o=rx"
   become: true

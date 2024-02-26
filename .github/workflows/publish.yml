@@ -1,3 +1,4 @@
+---
 name: Release to Ansible Galaxy
 on:
   push:
@@ -12,7 +13,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get galaxy name
         id: galaxy
         run: |
@@ -38,17 +39,19 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v4
         with:
           repository: ccdc-confidential/build-systems-deployment-cpp-build-machines
-          ref: ansible-provision  # for testing, change to development (or new staging branch) when complete
-          token: ${{ secrets.GH_PAT }}
+          ref: staging  # for testing, change to main when that repo is sorted
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Update builds requirements yaml
         run: |
           sudo snap install yq
-          yq eval -i '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' requirements.yml
+          yq eval -i \
+              '(.[] | select(.src == "ccdc.${{ needs.release.outputs.galaxy-name }}")) .version |= "${{ needs.release.outputs.requirements-version }}"' \
+              requirements.yml
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GH_PAT }}
           commit-message: "[bot] Updating ${{ env.filename }} with latest ${{ env.requirements-version }} release NO_JIRA"
