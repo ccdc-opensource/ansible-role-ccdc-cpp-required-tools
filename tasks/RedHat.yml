@@ -8,6 +8,9 @@
     gpgcheck: yes
   become: true
 
+- name: Install doxygen with crb enabled
+  ansible.builtin.command: dnf --enablerepo=crb install doxygen -y
+
 - name: Install required packages
   ansible.builtin.dnf:
     name:
@@ -21,7 +24,7 @@
       - jq
       - dos2unix # used by update_codens.sh
       # Documentation utilities
-      - doxygen # for building documentation
+      # Installed above - doxygen # for building documentation
       - graphviz # for building documentation
       - texlive-latex # for building documentation
       - texlive-latex-bin # for building documentation
