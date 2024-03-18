@@ -7,16 +7,12 @@
     owner: "{{ ansible_user }}"
   become: true
 
-- name: Install prerequsite tools (needed for below)
-  community.general.homebrew:
-    name:
+- name: Insall Homebrew + tools
+  ansible.builtin.include_role:
+    name: geerlingguy.mac.homebrew
+  vars:
+    homebrew_installed_packages: 
       - svn
-    state: present
-    update_homebrew: true
-
-- name: Install required tools
-  community.general.homebrew:
-    name:
       # Compression utilities
       - xz # efficient compression
       # Download utilities
@@ -34,3 +30,4 @@
       # The server is required to run csd_mariadb_databaselib testsuite
       - mariadb
     state: present
+# This is overwritten by our group_vars (cpp.build-machines)
