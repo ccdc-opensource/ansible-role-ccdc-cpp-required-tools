@@ -11,6 +11,7 @@
   ansible.builtin.include_role:
     name: geerlingguy.mac.homebrew
   vars:
+    # This is overwritten by our group_vars (cpp.build-machines)
     homebrew_installed_packages:
       - svn
       # Compression utilities
@@ -30,5 +31,3 @@
       # The server is required to run csd_mariadb_databaselib testsuite
       - mariadb
   when: not cpp_buildmachine
-    
-# This is overwritten by our group_vars (cpp.build-machines)
