@@ -33,7 +33,7 @@
     - addsource.rc != 0
     - '"Provide a unique name" not in addsource.stdout'
 - name: Install AzureSignTool
-  ansible.windows.win_command: dotnet tool install --global azuresigntool
+  ansible.windows.win_command: dotnet tool install --global azuresigntool --version {{ azuresigntool_version }}
   register: installtool
   failed_when:
     - installtool.rc != 0
