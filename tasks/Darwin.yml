@@ -29,5 +29,6 @@
       - conan@1
       # The server is required to run csd_mariadb_databaselib testsuite
       - mariadb
-    state: present
+  when: not cpp_buildmachine
+    
 # This is overwritten by our group_vars (cpp.build-machines)
