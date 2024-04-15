@@ -7,7 +7,7 @@
     owner: "{{ ansible_user }}"
   become: true
 
-- name: Insall Homebrew + tools
+- name: Install Homebrew + tools
   ansible.builtin.include_role:
     name: geerlingguy.mac.homebrew
   vars:
