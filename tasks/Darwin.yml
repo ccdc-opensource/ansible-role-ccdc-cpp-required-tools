@@ -31,3 +31,6 @@
       # The server is required to run csd_mariadb_databaselib testsuite
       - mariadb
   when: not cpp_buildmachine
+
+- name: Link conan
+  ansible.builtin.command: brew link conan@1
