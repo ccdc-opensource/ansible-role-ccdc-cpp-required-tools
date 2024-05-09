@@ -11,7 +11,9 @@
 - name: Install doxygen with crb enabled
   become: true
   ansible.builtin.dnf:
-    name: doxygen
+    name:
+      - doxygen # C++ documentation
+      - gperf # Qt build dependency
     enablerepo: powertools
     state: present
 
@@ -42,7 +44,6 @@
       - rsync # for syncing documentation
       - bison # Qt build dependency
       - flex # Qt build dependency
-      - gperf # Qt build dependency
       - diffutils # for diffing large results in conquest tests
       - MariaDB
       - xorg-x11-utils # for xdpyinfo
