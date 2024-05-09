@@ -1,14 +1,14 @@
 ---
-- name: Add mariadb repository
-  ansible.builtin.yum_repository:
-    name: mariadb
-    description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
-    baseurl: "http://yum.mariadb.org/10.6/rhel9-amd64"
-    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-    gpgcheck: yes
-  become: true
+# - name: Add mariadb repository
+#   ansible.builtin.yum_repository:
+#     name: mariadb
+#     description: mariadb repository at http://downloads.mariadb.org/mariadb/repositories/
+#     baseurl: "http://yum.mariadb.org/10.6/rhel9-amd64"
+#     gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+#     gpgcheck: yes
+#   become: true
 
-- name: Install doxygen with crb enabled
+- name: Install packages which require powertools repo enabled
   become: true
   ansible.builtin.dnf:
     name:
@@ -45,7 +45,7 @@
       - bison # Qt build dependency
       - flex # Qt build dependency
       - diffutils # for diffing large results in conquest tests
-      - MariaDB
+      # - MariaDB
       - xorg-x11-utils # for xdpyinfo
       - glx-utils # for glxinfo
       - mesa-dri-drivers # for OpenGL to work inside XDummy
