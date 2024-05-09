@@ -12,7 +12,7 @@
   become: true
   ansible.builtin.dnf:
     name: doxygen
-    enablerepo: crb
+    enablerepo: powertools
     state: present
 
 - name: Install required packages
