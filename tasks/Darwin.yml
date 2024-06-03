@@ -1,21 +1,24 @@
 ---
+- name: Get remote username
+  ansible.builtin.set_fact:
+    remote_user: "{{ ansible_user_id }}"
+
 - name: Ensure user can deploy manpages
   ansible.builtin.file:
     path: /usr/local/share/man/man8
     state: directory
     recurse: yes
-    owner: "{{ ansible_user }}"
+    owner: "{{ remote_user }}"
   become: true
 
 - name: Install Homebrew + tools
   ansible.builtin.include_role:
     name: geerlingguy.mac.homebrew
-  vars:
-    # This is overwritten by our group_vars (cpp.build-machines)
-    homebrew_installed_packages:
-      - svn
-      # Compression utilities
-      - xz # efficient compression
+
+- name: Ensure necessary homebrew packages are installed
+  community.general.homebrew:
+    name:
+      - xz
       # Download utilities
       - wget # for downloads, curl is part of the system
       - jq
@@ -33,6 +36,7 @@
   when: not cpp_buildmachine
 
 - name: Link conan
-  ansible.builtin.command: brew link conan@1
+  ansible.builtin.command:
+    cmd: brew link conan@1
   environment:
     PATH: "/usr/local/bin:/usr/bin"
