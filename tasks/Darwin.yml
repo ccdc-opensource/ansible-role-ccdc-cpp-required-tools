@@ -33,6 +33,4 @@
   when: not cpp_buildmachine
 
 - name: Link conan
-  ansible.builtin.command: brew link conan@1
-  environment:
-    PATH: "/usr/local/bin:/usr/bin"
+  ansible.builtin.shell: brew link conan@1
