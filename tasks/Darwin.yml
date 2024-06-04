@@ -1,14 +1,14 @@
 ---
 - name: Get remote username
   ansible.builtin.set_fact:
-    remote_user: "{{ ansible_user_id }}"
+    remote_username: "{{ ansible_user_id }}"
 
 - name: Ensure user can deploy manpages
   ansible.builtin.file:
     path: /usr/local/share/man/man8
     state: directory
     recurse: yes
-    owner: "{{ remote_user }}"
+    owner: "{{ remote_username }}"
   become: true
 
 - name: Install Homebrew + tools
@@ -36,4 +36,6 @@
   when: not cpp_buildmachine
 
 - name: Link conan  # noqa: command-instead-of-shell
-  ansible.builtin.shell: brew link conan@1
+  ansible.builtin.command: brew link conan@1
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin"
