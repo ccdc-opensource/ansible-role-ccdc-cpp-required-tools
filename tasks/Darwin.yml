@@ -39,4 +39,4 @@
   ansible.builtin.command:
     cmd: brew link conan@1
   environment:
-    PATH: "/usr/local/bin:/usr/bin"
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
