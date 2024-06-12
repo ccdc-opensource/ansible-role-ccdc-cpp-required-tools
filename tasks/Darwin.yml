@@ -35,7 +35,9 @@
       - fileicon
   when: not cpp_buildmachine
 
-- name: Link conan
+# `brew link` is idempotent; if the links already exist it will spit
+# out a warning but exit with code 0 so the task won't fail.
+- name: Link conan  # noqa: no-changed-when
   ansible.builtin.command:
     cmd: brew link conan@1
   environment:
