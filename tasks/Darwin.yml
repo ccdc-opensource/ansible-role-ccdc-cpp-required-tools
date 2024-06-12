@@ -35,7 +35,11 @@
       - fileicon
   when: not cpp_buildmachine
 
-- name: Link conan  # noqa: command-instead-of-shell
-  ansible.builtin.command: brew link conan@1
+- name: Link conan
+  ansible.builtin.command:
+    cmd: brew link conan@1
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin"
+  register: link_package
+  changed_when: '"symlinks created." in link_package.stdout'
+  failed_when: link_package.rc != 0
