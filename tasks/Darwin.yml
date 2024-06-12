@@ -35,10 +35,11 @@
       - fileicon
   when: not cpp_buildmachine
 
-# `brew link` is idempotent; if the links already exist it will spit
-# out a warning but exit with code 0 so the task won't fail.
-- name: Link conan  # noqa: no-changed-when
+- name: Link conan
   ansible.builtin.command:
     cmd: brew link conan@1
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+  register: link_package
+  changed_when: '"symlinks created." in link_package.stdout'
+  failed_when: link_package.rc != 0
