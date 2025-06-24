@@ -15,7 +15,7 @@
       # Artifactory
       - jfrog-cli # for uploading to artifactory
       # Required for some scripts? Putting here but could go in ccdc.cpp_cli_dev_tools role
-      - sysinternals
+      # - sysinternals
       - diffutils # for diffing large results in conquest tests
       # This is required for Code Signing in Azure
       - dotnet-6.0-sdk
