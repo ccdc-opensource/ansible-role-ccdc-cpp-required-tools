@@ -52,13 +52,21 @@
     mode: "u=rwx,g=rx,o=rx"
   become: true
 
-- name: Install Conan system-wide
+- name: Install Python 3.9 and pip
+  become: true
+  ansible.builtin.package:
+    name:
+      - python39
+      - python39-pip
+      - python39-setuptools
+    state: present
+
+- name: Install Conan system wide
   become: true
   ansible.builtin.pip:
     name: "conan=={{ conan_version }}"
-    executable: pip3
+    executable: /usr/bin/pip3.9
     state: present
-    extra_args: "--break-system-packages"
 
 - name: Ensure /usr/local/bin is in sudo secure_path
   become: true
