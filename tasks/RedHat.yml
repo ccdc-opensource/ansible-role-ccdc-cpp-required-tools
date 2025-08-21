@@ -52,13 +52,17 @@
     mode: "u=rwx,g=rx,o=rx"
   become: true
 
-- name: Install conan
-  become: yes
-  become_user: vagrant
-  become_method: ansible.builtin.su
-  become_flags: '--login'
+- name: Install Conan system wide
+  become: true
   ansible.builtin.pip:
-    name: conan=={{ conan_version }}
+    name: "conan=={{ conan_version }}"
+    executable: /usr/bin/pip3
     state: present
-    executable: pip3
-    extra_args: "--user"
+
+- name: Ensure /usr/local/bin is in sudo secure_path
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/10-secure_path
+    mode: '0440'
+    content: 'Defaults secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin'
+    validate: 'visudo -cf %s'
