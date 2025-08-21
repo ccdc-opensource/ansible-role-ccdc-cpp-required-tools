@@ -56,7 +56,7 @@
   become: true
   ansible.builtin.pip:
     name: "conan=={{ conan_version }}"
-    executable: /usr/bin/pip3.6
+    executable: /usr/bin/pip3
     state: present
 
 - name: Ensure /usr/local/bin is in sudo secure_path
