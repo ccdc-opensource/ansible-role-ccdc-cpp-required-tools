@@ -30,14 +30,14 @@
       - jfrog-cli # for uploading to artifactory
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
-      - conan@1
+      - conan
       # To set conquest app icon
       - fileicon
   when: not cpp_buildmachine
 
 - name: Link conan
   ansible.builtin.command:
-    cmd: brew link conan@1
+    cmd: brew link conan
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
   register: link_package
