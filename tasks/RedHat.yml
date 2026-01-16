@@ -41,6 +41,7 @@
       - mesa-dri-drivers # for OpenGL to work inside XDummy
       # Our python 3.7 build requires openssl 1.0
       - compat-openssl10
+      - cmake # Use the system cmake to work around SSL issues in bootstrapping conan
     state: present
     enable_plugin: crb
   become: true
