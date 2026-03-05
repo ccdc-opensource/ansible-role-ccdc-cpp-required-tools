@@ -19,6 +19,7 @@
   community.general.homebrew:
     name:
       - xz
+      - gnu-tar # For gtar
       # Download utilities
       - wget # for downloads, curl is part of the system
       - jq
@@ -26,7 +27,6 @@
       # Documentation utilities
       - doxygen # for building documentation
       - graphviz # for building documentation
-      # Artifactory
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
       - conan
