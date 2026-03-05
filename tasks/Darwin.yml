@@ -27,12 +27,12 @@
       - doxygen # for building documentation
       - graphviz # for building documentation
       # Artifactory
-      - jfrog-cli # for uploading to artifactory
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
       - conan
       # To set conquest app icon
       - fileicon
+    state: present
   when: not cpp_buildmachine
 
 - name: Link conan
