@@ -38,6 +38,8 @@
 # Install Specfic conan version
 - name: Link pipx
   ansible.builtin.command: pipx ensurepath
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
 
 - name: install conan 2.24
   community.general.pipx:
