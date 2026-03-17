@@ -29,17 +29,20 @@
       - graphviz # for building documentation
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
-      - conan@2.24
+      - pipx
+      - python-packaging
       # To set conquest app icon
       - fileicon
     state: present
   when: not cpp_buildmachine
 
-- name: Link conan
-  ansible.builtin.command:
-    cmd: brew link conan
+# Install Specfic conan version
+- name: Link pipx
+  ansible.builtin.command: pipx ensurepath
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
-  register: link_package
-  changed_when: '"symlinks created." in link_package.stdout'
-  failed_when: link_package.rc != 0
+
+- name: install conan 2.24
+  ansible.builtin.command: pipx install conan==2.24
+  environment:
+    PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
