@@ -30,6 +30,7 @@
       # Python utilities
       - pyenv # In order to install multiple versions of python, as homebrew only brings in 'the latest'
       - pipx
+      - python-packaging
       # To set conquest app icon
       - fileicon
     state: present
