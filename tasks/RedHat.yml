@@ -5,6 +5,7 @@
     name:
       - doxygen # C++ documentation
       - gperf # Qt build dependency
+      - python3-packaging # For pip installs with version
     enablerepo: powertools
     state: present
 
