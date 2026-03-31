@@ -42,7 +42,7 @@
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
 
-- name: install conan 2.24
-  ansible.builtin.command: pipx install conan==2.24
+- name: install conan {{ conan_version }}
+  ansible.builtin.command: pipx install conan=={{ conan_version }}
   environment:
     PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
