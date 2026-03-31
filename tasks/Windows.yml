@@ -19,7 +19,12 @@
       # This is required for Code Signing in Azure
       - dotnet-6.0-sdk
       # Required for building C++ projects
-      - conan # for package management
+    state: present
+
+- name: install conan {{ conan_version }}
+  chocolatey.chocolatey.win_chocolatey:
+    name: conan
+    version: "{{ conan_version }}"
     state: present
 
 # This is required for Code Signing in Azure using Dotnet installed above
